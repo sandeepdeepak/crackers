@@ -1,0 +1,53 @@
+<div class="container-fluid mt-5">
+    <table class="table table-bordered table-warning">
+        <thead>
+            <tr>
+                <th scope="col" class="title"></th>
+                <th scope="col" class="title">ITEMS</th>
+                <th scope="col" class="title">Rate</th>
+                <th scope="col" class="title">Per</th>
+                <th scope="col" class="title">Qty</th>
+                <th scope="col" class="title">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let category of crackersList;let i=index">
+                <tr>
+                    <th scope="row"></th>
+                    <td class="cat-text">{{category.catName}}</td>
+                </tr>
+                <ng-container *ngFor="let item of category.items;let j=index">
+                    <tr>
+                        <th scope="row" class="sl-no">{{item.id}}.</th>
+                        <td class="item-name">{{item.itemName}}</td>
+                        <td>Rs.{{item.rate}}</td>
+                        <td class="per">{{item.per}}</td>
+                        <td class="total-amount">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">No.</span>
+                                </div>
+                                <input type="number" [(ngModel)]="item.requirement" class="form-control"
+                                    aria-label="Amount (to the nearest dollar)" (input)="calcAmount(item, i,j)">
+                            </div>
+                        </td>
+                        <td class="total-amount">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Rs.</span>
+                                </div>
+                                <input type="text" [(ngModel)]="item.totalamount" class="form-control"
+                                    aria-label="Amount (to the nearest dollar)">
+                            </div>
+                        </td>
+                    </tr>
+                </ng-container>
+            </ng-container>
+        </tbody>
+    </table>
+    <div class="d-flex flex-row justify-content-end total-text">
+        <div class="m-3">Total Amount :
+        </div>
+        <div class="m-3">Rs.{{calcSumTotal()}}</div>
+    </div>
+</div>
