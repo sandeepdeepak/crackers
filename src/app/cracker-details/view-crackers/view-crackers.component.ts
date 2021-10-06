@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { CRACKERSLIST } from './crackers-list';
 
 @Component({
@@ -9,7 +11,7 @@ import { CRACKERSLIST } from './crackers-list';
 export class ViewCrackersComponent implements OnInit {
 
   crackersList = CRACKERSLIST;
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -30,4 +32,20 @@ export class ViewCrackersComponent implements OnInit {
     return sumTotal
   }
 
+  onSubmit(contactForm: NgForm) {
+    if (contactForm.valid) {
+      const email = contactForm.value;
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      this.http.post('https://formspree.io/asdlf7asdf',
+        { name: email.name, replyto: email.email, message: email.messages },
+        { 'headers': headers }).subscribe(
+          response => {
+            console.log(response);
+          }
+        );
+    }
+  }
+
 }
+
+// https://formspree.io/f/xvodyvrg
