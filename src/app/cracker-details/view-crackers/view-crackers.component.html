@@ -56,12 +56,12 @@
     <div class="d-flex flex-column">
         <div class="d-flex flex-row justify-content-end" *ngFor="let item of cartItems">
             <div class="m-3">{{item.itemName}}</div>
-            <div class="m-3">Rs.{{item.totalamount}} ( {{item.requirement}} )</div>
+            <div class="m-3">Rs.{{item.totalamount}}.00 ( {{item.requirement}} )</div>
         </div>
     </div>
     <div class="d-flex flex-row justify-content-end total-text">
         <div class="m-3">Total Amount :
         </div>
-        <div class="m-3">Rs. {{calcSumTotal()}}</div>
+        <div class="m-3">Rs. {{calcSumTotal()}}.00</div>
     </div>
 </div>
