@@ -11,6 +11,7 @@ import { CRACKERSLIST } from './crackers-list';
 export class ViewCrackersComponent implements OnInit {
 
   crackersList = CRACKERSLIST;
+  cartItems: any[] = [];
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -18,6 +19,7 @@ export class ViewCrackersComponent implements OnInit {
 
   calcAmount(item: any, i: number, j: number) {
     this.crackersList[i].items[j].totalamount = item.requirement * item.rate;
+    this.setCartItems();
   }
 
   calcSumTotal() {
@@ -30,6 +32,17 @@ export class ViewCrackersComponent implements OnInit {
       });
     });
     return sumTotal
+  }
+
+  setCartItems() {
+    this.cartItems = [];
+    this.crackersList.forEach((cat: any) => {
+      cat.items.forEach((item: any) => {
+        if (item.totalamount) {
+          this.cartItems.push(item);
+        }
+      });
+    });
   }
 
   onSubmit(contactForm: NgForm) {
