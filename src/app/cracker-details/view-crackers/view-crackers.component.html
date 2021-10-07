@@ -53,10 +53,9 @@
         </tbody>
     </table>
     <div class="d-flex flex-column">
-        <div class="row cart-items-text" *ngFor="let item of cartItems">
-            <div class="col-md-6"></div>
-            <div class="col  float-right m-3">{{item.itemName}}</div>
-            <div class="col  float-right m-3">Rs.{{item.totalamount}}.00 ( {{item.requirement}} )</div>
+        <div class="row p-2 cart-items-text" *ngFor="let item of cartItems">
+            <div class="col-8">{{item.itemName}} ( {{item.requirement}} )</div>
+            <div class="col-4">Rs.{{item.totalamount}}.00</div>
         </div>
     </div>
     <div class="d-flex flex-row justify-content-center total-text">
