@@ -28,7 +28,7 @@
                     <tr>
                         <th class="sl-no">{{item.id}}.</th>
                         <td>
-                            <div class="item-name">{{item.itemName}}</div>
+                            <p class="item-name">{{item.itemName}}</p>
                         </td>
                         <td class="rate">Rs.{{item.rate}}</td>
                         <td class="per">{{item.per}}</td>
@@ -53,12 +53,13 @@
         </tbody>
     </table>
     <div class="d-flex flex-column">
-        <div class="d-flex flex-row justify-content-end" *ngFor="let item of cartItems">
-            <div class="m-3">{{item.itemName}}</div>
-            <div class="m-3">Rs.{{item.totalamount}}.00 ( {{item.requirement}} )</div>
+        <div class="row cart-items-text" *ngFor="let item of cartItems">
+            <div class="col-md-6"></div>
+            <div class="col  float-right m-3">{{item.itemName}}</div>
+            <div class="col  float-right m-3">Rs.{{item.totalamount}}.00 ( {{item.requirement}} )</div>
         </div>
     </div>
-    <div class="d-flex flex-row justify-content-end total-text">
+    <div class="d-flex flex-row justify-content-center total-text">
         <div class="m-3">Total Amount :
         </div>
         <div class="m-3">Rs. {{calcSumTotal()}}.00</div>

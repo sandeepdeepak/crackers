@@ -116,8 +116,11 @@ $media-breakpoint-up: (
     .total-text {
         color: #942621 !important;
         margin-right: 1rem;
-        font-size: 12px;
-    
+        font-size: 12px;  
+    }
+
+    .cart-items-text {
+        font-size: 12px; 
     }
 
     .rate {
