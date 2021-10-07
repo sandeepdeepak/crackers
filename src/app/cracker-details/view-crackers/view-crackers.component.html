@@ -1,4 +1,4 @@
-<div class="container-fluid mt-5">
+<div class="mt-5 p-md-3 p-sm-0">
 
     <!-- <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
         <input type="text" placeholder="Name" name="name" ngModel required #name="ngModel">
@@ -26,24 +26,23 @@
                 </tr>
                 <ng-container *ngFor="let item of category.items;let j=index">
                     <tr>
-                        <th scope="row" class="sl-no">{{item.id}}.</th>
-                        <td class="item-name">{{item.itemName}}</td>
-                        <td>Rs.{{item.rate}}</td>
+                        <th class="sl-no">{{item.id}}.</th>
+                        <td>
+                            <div class="item-name">{{item.itemName}}</div>
+                        </td>
+                        <td class="rate">Rs.{{item.rate}}</td>
                         <td class="per">{{item.per}}</td>
-                        <td class="total-amount">
+                        <td class="requirement">
                             <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">No.</span>
-                                </div>
                                 <input type="number" [(ngModel)]="item.requirement" class="form-control"
                                     aria-label="Amount (to the nearest dollar)" (input)="calcAmount(item, i,j)">
                             </div>
                         </td>
                         <td class="total-amount">
                             <div class="input-group mb-3">
-                                <div class="input-group-prepend">
+                                <!-- <div class="input-group-prepend">
                                     <span class="input-group-text">Rs.</span>
-                                </div>
+                                </div> -->
                                 <input type="text" [(ngModel)]="item.totalamount" class="form-control"
                                     aria-label="Amount (to the nearest dollar)">
                             </div>
