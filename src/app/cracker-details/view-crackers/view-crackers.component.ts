@@ -2,17 +2,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CRACKERSLIST } from './crackers-list';
+import { CrackersService } from './view-crackers.service';
 
 @Component({
   selector: 'app-view-crackers',
   templateUrl: './view-crackers.component.html',
-  styleUrls: ['./view-crackers.component.scss']
+  styleUrls: ['./view-crackers.component.scss'],
+  providers: [CrackersService]
 })
 export class ViewCrackersComponent implements OnInit {
 
   crackersList = CRACKERSLIST;
   cartItems: any[] = [];
-  constructor(private http: HttpClient) { }
+  customerName = '';
+  mobileNo: any = null;
+  constructor(private http: HttpClient, private crackersServ: CrackersService) { }
 
   ngOnInit(): void {
   }
@@ -43,6 +47,19 @@ export class ViewCrackersComponent implements OnInit {
         }
       });
     });
+  }
+
+  sendOrderByWhatsApp() {
+    let message = `Customer Name: ${this.customerName.toUpperCase()} \\n`;
+    message += `Mobile No: ${this.mobileNo} \\n \\n`;
+    message += `Order List:  \\n \\n`;
+    this.cartItems.forEach((item: any) => {
+      message += `${item.itemName} (${item.requirement}) - Rs.${item.totalamount}.00 \\n`;
+    });
+    message += `\\nTotal Amount: Rs.${this.calcSumTotal()}.00 \\n \\n`;
+    console.log(message);
+    this.crackersServ.sendOrderthroughWhatsApp(message, '918056759212').subscribe();
+    this.crackersServ.sendOrderthroughWhatsApp(message, '919943178112').subscribe();
   }
 
   onSubmit(contactForm: NgForm) {
